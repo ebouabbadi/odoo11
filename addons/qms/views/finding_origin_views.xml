@@ -1,0 +1,54 @@
+<odoo>
+
+    <!-- TREE VIEW -->
+    <record id="finding_origin_view_tree" model="ir.ui.view">
+        <field name="name">qms.finding.origin.view.tree</field>
+        <field name="model">qms.finding.origin</field>
+        <field name="inherit_id" ref="qms.finding_milestone_view_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="parent_id" />
+            </field>
+        </field>
+    </record>
+
+    <!-- SEARCH VIEW -->
+    <record id="finding_origin_view_search" model="ir.ui.view">
+        <field name="name">qms.finding.origin.view.search</field>
+        <field name="model">qms.finding.origin</field>
+        <field name="type">search</field>
+        <field name="inherit_id" ref="qms.finding_milestone_view_search" />
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="parent_id" />
+            </field>
+        </field>
+    </record>
+
+    <!-- FORM VIEW -->
+    <record id="finding_origin_view_form" model="ir.ui.view">
+        <field name="name">qms.finding.origin.view.form</field>
+        <field name="type">form</field>
+        <field name="model">qms.finding.origin</field>
+        <field name="inherit_id" ref="qms.finding_milestone_view_form" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="parent_id" />
+            </field>
+        </field>
+    </record>
+
+    <!-- WINDOW ACTION -->
+    <record id="finding_origin_action_view_tree" model="ir.actions.act_window">
+        <field name="name">Origins</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">qms.finding.origin</field>
+        <field name="view_id" eval="finding_origin_view_tree" />
+        <field name="search_view_id" ref="finding_origin_view_search" />
+    </record>
+
+    <!-- MENU -->
+    <menuitem id="finding_origin_menu" name="Origins" parent="finding_menu_config"
+        action="finding_origin_action_view_tree" sequence="10" />
+
+</odoo>

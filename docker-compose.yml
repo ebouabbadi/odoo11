@@ -1,0 +1,31 @@
+version: '3.1'
+
+services:
+  odoo:
+    image: odoo:11
+    container_name: odoo
+    ports:
+      - "8069:8069"
+    volumes:
+      - ./addons:/mnt/extra-addons  # Mounting the odoo-addons folder to the container
+      - odoo-data:/var/lib/odoo  # Odoo data
+    environment:
+      - HOST=odoo-db
+      - USER=odoo
+      - PASSWORD=odoo
+    depends_on:
+      - odoo-db
+
+  odoo-db:
+    image: postgres:alpine
+    container_name: odoo-db
+    environment:
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_DB=odoo
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data
+
+volumes:
+  odoo-db-data:
+  odoo-data:

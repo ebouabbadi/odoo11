@@ -1,0 +1,28 @@
+<odoo>
+
+    <!-- TREE VIEW -->
+    <record id="action_stage_view_tree" model="ir.ui.view">
+        <field name="name">qms.action.stage.view.tree</field>
+        <field name="model">qms.action.stage</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="is_starting" />
+                <field name="is_ending" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- WINDOW ACTION -->
+    <record id="action_stage_action_view_tree" model="ir.actions.act_window">
+        <field name="name">Stages</field>
+        <field name="res_model">qms.action.stage</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- MENU -->
+    <menuitem id="action_stage_menu" name="Stages" parent="menu_config_action" action="action_stage_action_view_tree"
+        sequence="5" />
+
+</odoo>
